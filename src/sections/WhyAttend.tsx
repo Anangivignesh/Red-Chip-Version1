@@ -10,25 +10,25 @@ const WhyAttend = () => {
       icon: Trophy,
       title: 'Grand Prizes',
       description: 'Compete for a prize pool of ₹3,00,000 across multiple tracks. Win cash, gadgets, and internship opportunities.',
-      color: 'gold',
+      color: 'secondary',
     },
     {
       icon: Users,
       title: 'Expert Mentorship',
       description: 'Get 1-on-1 guidance from industry leaders at Google, Microsoft, and top startups. Learn from the best while you build.',
-      color: 'red',
+      color: 'primary',
     },
     {
       icon: Lightbulb,
       title: 'Elite Networking',
       description: 'Connect with 500+ like-minded developers and potential co-founders. Your next big opportunity starts here.',
-      color: 'gold',
+      color: 'secondary',
     },
     {
       icon: Rocket,
       title: 'Launch Your Career',
       description: 'Showcase your skills to top recruiters. Past participants have landed jobs at FAANG and unicorn startups.',
-      color: 'red',
+      color: 'primary',
     },
   ];
 
@@ -62,15 +62,14 @@ const WhyAttend = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div
-          className={`text-center mb-16 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
         >
           <h2 className="font-orbitron text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="text-white">Why </span>
+            <span className="text-slate-900 dark:text-white">Why </span>
             <span className="gradient-text">Attend?</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
+          <p className="text-slate-500 dark:text-white/60 max-w-2xl mx-auto text-lg">
             Join hundreds of passionate innovators for an unforgettable experience that could change your career trajectory.
           </p>
         </div>
@@ -82,42 +81,38 @@ const WhyAttend = () => {
             return (
               <div
                 key={feature.title}
-                className={`group relative glass rounded-2xl p-6 border border-white/5 hover:border-red/50 transition-all duration-500 hover-lift ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                className={`group relative glass rounded-2xl p-6 border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-500 hover-lift bg-white/50 dark:bg-transparent ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}
                 style={{ transitionDelay: `${200 + index * 100}ms` }}
               >
                 {/* Glow Effect */}
                 <div
-                  className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                    feature.color === 'gold' ? 'bg-gold/5' : 'bg-red/5'
-                  }`}
+                  className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${feature.color === 'secondary' ? 'bg-secondary/5' : 'bg-primary/5'
+                    }`}
                 />
 
                 {/* Icon */}
                 <div
-                  className={`relative w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${
-                    feature.color === 'gold'
-                      ? 'bg-gold/10 text-gold group-hover:shadow-glow-gold'
-                      : 'bg-red/10 text-red group-hover:shadow-glow'
-                  } transition-all duration-300`}
+                  className={`relative w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${feature.color === 'secondary'
+                    ? 'bg-secondary/10 text-secondary group-hover:shadow-glow-gold'
+                    : 'bg-primary/10 text-primary group-hover:shadow-glow'
+                    } transition-all duration-300`}
                 >
                   <Icon className="w-7 h-7" />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-orbitron text-lg font-bold text-white mb-2 group-hover:text-gold transition-colors">
+                <h3 className="font-orbitron text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-secondary transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-slate-500 dark:text-white/50 text-sm leading-relaxed">
                   {feature.description}
                 </p>
 
                 {/* Corner Accent */}
                 <div
-                  className={`absolute top-0 right-0 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                    feature.color === 'gold' ? 'text-gold/20' : 'text-red/20'
-                  }`}
+                  className={`absolute top-0 right-0 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${feature.color === 'secondary' ? 'text-secondary/20' : 'text-primary/20'
+                    }`}
                 >
                   <Icon className="w-full h-full" />
                 </div>
@@ -128,9 +123,8 @@ const WhyAttend = () => {
 
         {/* Bottom Stats Bar */}
         <div
-          className={`mt-16 glass rounded-2xl p-6 sm:p-8 border-glow transition-all duration-700 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`mt-16 glass rounded-2xl p-6 sm:p-8 border-glow transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
         >
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             {[

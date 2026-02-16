@@ -1,200 +1,92 @@
-import { useEffect, useRef, useState } from 'react';
-import { Terminal, Mail, Phone, MapPin, Twitter, Linkedin, Instagram, MessageCircle, Heart } from 'lucide-react';
+import { Terminal, Github, Twitter, Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Tracks', href: '#tracks' },
-    { name: 'Prizes', href: '#prizes' },
-    { name: 'Sponsors', href: '#sponsors' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const legalLinks = [
-    { name: 'Code of Conduct', href: '#' },
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
-    { name: 'FAQs', href: '#' },
-  ];
-
-  const socialLinks = [
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: MessageCircle, href: '#', label: 'Discord' },
-  ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const links = {
+    product: ['Features', 'Integrations', 'Pricing', 'FAQ'],
+    company: ['About Us', 'Careers', 'Blog', 'Contact'],
+    legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
+    social: [
+      { icon: Twitter, href: '#' },
+      { icon: Github, href: '#' },
+      { icon: Linkedin, href: '#' },
+      { icon: Mail, href: '#' }
+    ]
   };
 
   return (
-    <footer
-      id="contact"
-      ref={sectionRef}
-      className="relative pt-24 pb-8 overflow-hidden"
-    >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent" />
-      <div className="absolute inset-0 radial-glow opacity-30" />
+    <footer className="relative bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-white/10 pt-20 pb-10 overflow-hidden transition-colors duration-300">
+      {/* Soft background glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-orange-50 dark:bg-primary/5 rounded-full blur-3xl -z-10 opacity-60" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main Footer Content */}
-        <div
-          className={`grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 gap-y-12 mb-16">
           {/* Brand Column */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <a href="#home" className="flex items-center gap-2 mb-4">
-              <Terminal className="w-6 h-6 text-red" />
-              <span className="font-orbitron font-bold text-lg">
-                <span className="text-red">INNO</span>
-                <span className="text-gold">HACK</span>
-                <span className="text-white/60">_2.0</span>
+          <div className="col-span-2 lg:col-span-2">
+            <a href="#home" className="flex items-center gap-2 mb-6 group w-fit">
+              <div className="bg-orange-50 dark:bg-white/5 p-2 rounded-lg group-hover:bg-orange-100 dark:group-hover:bg-white/10 transition-colors">
+                <Terminal className="w-6 h-6 text-primary" />
+              </div>
+              <span className="font-orbitron font-bold text-xl tracking-tight text-slate-900 dark:text-white">
+                INNO<span className="text-primary">HACK</span>
               </span>
             </a>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">
-              The biggest annual hackathon creating a platform for developers to build solutions for a better tomorrow.
+            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
+              Empowering the next generation of developers to build tailored solutions for real-world problems.
             </p>
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {socialLinks.map((social) => {
+            <div className="flex gap-4">
+              {links.social.map((social, i) => {
                 const Icon = social.icon;
                 return (
                   <a
-                    key={social.label}
+                    key={i}
                     href={social.href}
-                    className="w-10 h-10 glass rounded-full flex items-center justify-center text-white/60 hover:text-red hover:border-red/50 transition-all duration-300 hover:rotate-[360deg]"
-                    aria-label={social.label}
+                    className="w-10 h-10 rounded-full bg-slate-50 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-primary hover:text-white transition-all duration-300"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
-                );
+                )
               })}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Links Columns */}
           <div>
-            <h4 className="font-orbitron text-sm font-bold text-white mb-4 tracking-wider">
-              Quick Links
-            </h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                    }}
-                    className="text-white/50 hover:text-red text-sm transition-colors inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-0 h-px bg-red group-hover:w-3 transition-all duration-300" />
-                    {link.name}
-                  </a>
-                </li>
+            <h4 className="font-bold text-slate-900 dark:text-white mb-6 font-orbitron">Hackathon</h4>
+            <ul className="space-y-4 text-sm text-slate-500 dark:text-slate-400">
+              {links.product.map(link => (
+                <li key={link}><a href="#" className="hover:text-primary transition-colors">{link}</a></li>
               ))}
             </ul>
           </div>
 
-          {/* Legal Links */}
           <div>
-            <h4 className="font-orbitron text-sm font-bold text-white mb-4 tracking-wider">
-              Legal
-            </h4>
-            <ul className="space-y-2">
-              {legalLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-white/50 hover:text-red text-sm transition-colors inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-0 h-px bg-red group-hover:w-3 transition-all duration-300" />
-                    {link.name}
-                  </a>
-                </li>
+            <h4 className="font-bold text-slate-900 dark:text-white mb-6 font-orbitron">Company</h4>
+            <ul className="space-y-4 text-sm text-slate-500 dark:text-slate-400">
+              {links.company.map(link => (
+                <li key={link}><a href="#" className="hover:text-primary transition-colors">{link}</a></li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-orbitron text-sm font-bold text-white mb-4 tracking-wider">
-              Contact Us
-            </h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-red flex-shrink-0 mt-0.5" />
-                <span className="text-white/50 text-sm">
-                  SVCE Tirupati,<br />
-                  Innovation Hub, Block C
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-red flex-shrink-0" />
-                <a
-                  href="mailto:hello@innohacks.tech"
-                  className="text-white/50 hover:text-red text-sm transition-colors"
-                >
-                  hello@innohacks.tech
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-red flex-shrink-0" />
-                <a
-                  href="tel:+919876543210"
-                  className="text-white/50 hover:text-red text-sm transition-colors"
-                >
-                  +91 98765 43210
-                </a>
-              </li>
-            </ul>
+          <div className="col-span-2 md:col-span-4 lg:col-span-2">
+            <h4 className="font-bold text-slate-900 dark:text-white mb-6 font-orbitron">Stay Updated</h4>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">Subscribe to our newsletter for the latest updates.</p>
+            <div className="flex gap-2">
+              <input type="email" placeholder="Enter your email" className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-2.5 text-sm w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-slate-900 dark:text-white" />
+              <button className="bg-primary hover:bg-orange-600 text-white font-bold rounded-lg px-4 py-2.5 text-sm transition-colors">
+                Join
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="section-divider mb-8" />
-
-        {/* Bottom Bar */}
-        <div
-          className={`flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-700 delay-300 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <p className="text-white/40 text-xs text-center sm:text-left">
-            © 2024 INNOHACK 2.0. All rights reserved.
-          </p>
-          <p className="text-white/40 text-xs flex items-center gap-1">
-            Made with <Heart className="w-3 h-3 text-red fill-red" /> by the InnoHacks Team
-          </p>
+        <div className="pt-8 border-t border-slate-100 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 dark:text-slate-500">
+          <div>
+            &copy; 2024 InnoHack Org. All rights reserved.
+          </div>
+          <div className="flex items-center gap-1">
+            Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> by <a href="#" className="text-slate-600 dark:text-slate-400 font-bold hover:text-primary">InnoTeam</a>
+          </div>
         </div>
       </div>
     </footer>

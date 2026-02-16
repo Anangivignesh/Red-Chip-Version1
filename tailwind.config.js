@@ -42,21 +42,22 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Semantic color aliases for backward compatibility during refactor
         red: {
-          DEFAULT: '#FF0000',
-          dark: '#CC0000',
-          light: '#FF3333',
+          DEFAULT: 'hsl(var(--primary))',
+          dark: 'hsl(var(--primary))', // Map to same for now, or darker shade
+          light: 'hsl(var(--primary))',
         },
         gold: {
-          DEFAULT: '#FFD700',
-          dark: '#CCAC00',
-          light: '#FFE44D',
+          DEFAULT: 'hsl(var(--secondary))',
+          dark: 'hsl(var(--secondary))',
+          light: 'hsl(var(--secondary))',
         },
         dark: {
-          DEFAULT: '#0A0A0A',
-          100: '#1A1A1A',
-          200: '#2A2A2A',
-          300: '#3A3A3A',
+          DEFAULT: '#020205', // Very dark blue/black
+          100: '#0a0a12',
+          200: '#12121f',
+          300: '#1a1a2e',
         },
       },
       borderRadius: {
@@ -68,9 +69,9 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        glow: "0 0 20px rgba(255, 0, 0, 0.5)",
-        "glow-gold": "0 0 20px rgba(255, 215, 0, 0.5)",
-        "glow-lg": "0 0 40px rgba(255, 0, 0, 0.4), 0 0 80px rgba(255, 0, 0, 0.2)",
+        glow: "0 0 20px hsl(var(--primary) / 0.5)",
+        "glow-gold": "0 0 20px hsl(var(--secondary) / 0.5)",
+        "glow-lg": "0 0 40px hsl(var(--primary) / 0.4), 0 0 80px hsl(var(--primary) / 0.2)",
       },
       keyframes: {
         "accordion-down": {
@@ -90,8 +91,8 @@ module.exports = {
           "50%": { transform: "translateY(-20px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(255, 215, 0, 0.4)" },
-          "50%": { boxShadow: "0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--secondary) / 0.4)" },
+          "50%": { boxShadow: "0 0 40px hsl(var(--secondary) / 0.8), 0 0 60px hsl(var(--secondary) / 0.4)" },
         },
         "spin-slow": {
           "0%": { transform: "rotate(0deg)" },
